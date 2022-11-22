@@ -2,11 +2,37 @@
     Remember to use comments to define the algorithm(s) needed
     BEFORE you write any code
 */
-const calculateYearlyExpenses = () => { }
+const calculateYearlyExpenses = (mApps) => {
+    const year = mApps.monthlyExpenses * 12
 
-const calculateExpensesPercentage = () => { }
+    return year
+ }
 
-const isQualified = () => { }
+const calculateExpensesPercentage = (mApps, yearly) => {
+    const divide = yearly / mApps.salary
+    const sum = divide * 100
+
+    return sum
+ }
+
+const isQualified = (mApps, percentage) => {
+    const mortgage = mApps.mortgage
+
+    const qualified = (taco) => {
+        if(percentage < 10) {
+            taco.qualified = true
+            taco.amount = mApps.salary * 5
+        } else {
+            taco.qualified = false
+            taco.amount = 0
+        }
+    
+        return taco
+
+    }
+
+    return qualified(mortgage)
+ }
 
 const mortgageApplicants = [
     { id: 1, name: "James Runolfsdottir", monthlyExpenses: 343.7, salary: 49938.68, mortgage: {}, address: "866 Weissnat Forks", city: "South Dario" },
@@ -28,6 +54,22 @@ const mortgageApplicants = [
 */
 
 
+
+mortgageApplicants.forEach(mApps => {
+    //console.log(mApps)
+    let years = calculateYearlyExpenses(mApps)
+    // console.log(years)
+
+    let expSal = calculateExpensesPercentage(mApps, years)
+    //console.log(expSal)
+
+    let qual = isQualified(mApps, expSal)
+    // console.log(qual)
+
+    if (mApps.mortgage.qualified === true) {
+        console.log(`${mApps.name} is qualified for a maximum mortgage of $${mApps.mortgage.amount}`)
+    }
+})
 
 
 
